@@ -1,3 +1,4 @@
+// Project type definition
 export interface Project {
   id: string
   title: string

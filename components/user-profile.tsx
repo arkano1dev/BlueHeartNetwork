@@ -1,3 +1,5 @@
+"use client"
+
 import { useState } from "react"
 import { User, MapPin, Calendar, Heart, Edit, Globe, MessageSquare, Share2, Award, Bookmark } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
