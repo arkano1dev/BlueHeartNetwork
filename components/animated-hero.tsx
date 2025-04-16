@@ -78,4 +78,3 @@ export default function AnimatedHero() {
 
   return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" style={{ zIndex: -1 }} />
 }
-

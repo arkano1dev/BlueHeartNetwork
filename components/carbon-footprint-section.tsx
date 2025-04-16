@@ -203,4 +203,3 @@ export default function CarbonFootprintSection({ className = "" }: CarbonFootpri
     </div>
   )
 }
-

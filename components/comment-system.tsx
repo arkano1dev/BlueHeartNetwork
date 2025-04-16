@@ -365,4 +365,3 @@ export default function CommentSystem({ contentId, contentType, currentUserId }:
     </div>
   )
 }
-

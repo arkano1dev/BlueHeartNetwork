@@ -297,7 +297,7 @@ export default function HomePage() {
           <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-blue-100">
               <Award className="h-8 w-8 inline-block mr-2 text-blue-400" />
-              Your Impact Journey
+              Your Blue Impact
             </h2>
             <p className="text-center text-blue-300 mb-8 max-w-3xl mx-auto">
               Track your contributions and earn badges as you help protect our oceans
@@ -549,4 +549,3 @@ export default function HomePage() {
     </div>
   )
 }
-

@@ -238,4 +238,3 @@ export default function LiveActivityStream({ limit = 5, simplified = false }) {
     </div>
   )
 }
-

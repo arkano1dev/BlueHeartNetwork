@@ -296,4 +296,3 @@ export default function UserProfile({ userId, isOwnProfile = false }: UserProfil
     </div>
   )
 }
-

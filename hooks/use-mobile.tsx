@@ -30,4 +30,3 @@ export default function useMobile() {
 
   return { isMobile, isTablet, isDesktop, windowWidth }
 }
-

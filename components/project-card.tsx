@@ -161,4 +161,3 @@ export default function ProjectCard({ project, featured = false }: ProjectCardPr
     </div>
   )
 }
-

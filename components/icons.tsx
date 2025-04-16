@@ -21,4 +21,3 @@ export const Heart = React.forwardRef<SVGSVGElement, React.SVGAttributes<SVGSVGE
   ),
 )
 Heart.displayName = "Heart"
-

@@ -633,4 +633,3 @@ function formatAmount(amount: number): string {
     minimumFractionDigits: amount % 1 === 0 ? 0 : 2,
   }).format(amount)
 }
-
