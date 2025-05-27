@@ -402,4 +402,3 @@ export default function UserContributions({ userId, className = "" }: UserContri
     </Card>
   )
 }
-

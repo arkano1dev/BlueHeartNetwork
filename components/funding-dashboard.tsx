@@ -662,4 +662,3 @@ export default function FundingDashboard({ className = "", simplified = false }:
     </Card>
   )
 }
-

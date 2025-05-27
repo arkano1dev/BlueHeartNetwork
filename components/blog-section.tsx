@@ -311,4 +311,3 @@ export default function BlogSection() {
     </div>
   )
 }
-

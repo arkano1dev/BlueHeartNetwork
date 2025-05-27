@@ -1,2 +1,2 @@
-# BlueHeartNetwork
-https://www.blueheart.network/
+# BluePulse
+https://www.bluepulse.network/

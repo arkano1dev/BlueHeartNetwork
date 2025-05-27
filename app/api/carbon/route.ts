@@ -32,4 +32,3 @@ export async function GET() {
     return NextResponse.json({ error: "Failed to calculate carbon footprint" }, { status: 500 })
   }
 }
-

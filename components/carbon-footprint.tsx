@@ -260,4 +260,3 @@ export default function CarbonFootprint({ className = "", staticMode = false, st
     </div>
   )
 }
-

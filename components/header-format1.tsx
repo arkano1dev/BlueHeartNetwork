@@ -1,136 +1,49 @@
 "use client"
 
-import { usePathname } from "next/navigation"
-import Link from "next/link"
-import { Heart, Globe, ExternalLink } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { useEffect, useState } from "react"
+import type React from "react"
+import { useState, useEffect } from "react"
 
-interface UserData {
-  name: string
-  email: string
-  region: string
-  membershipType: string
-  joinDate: string
-  isLoggedIn: boolean
+interface HeaderProps {
+  onToggleSidebar: () => void
 }
 
-export default function Header() {
-  const pathname = usePathname()
-  const [user, setUser] = useState<UserData | null>(null)
-  const [isMounted, setIsMounted] = useState(false)
+const HeaderFormat1: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
+  const [username, setUsername] = useState<string | null>(null)
 
   useEffect(() => {
-    setIsMounted(true)
-    // Check if user is logged in
-    try {
-      const userData = localStorage.getItem("blueHeartsUser")
-      if (userData) {
-        setUser(JSON.parse(userData))
+    const storedUser = localStorage.getItem("bluePulseUser")
+    if (storedUser) {
+      try {
+        const userObject = JSON.parse(storedUser)
+        setUsername(userObject.username || userObject.name || "User") // Prioritize username, then name, then default to 'User'
+      } catch (error) {
+        console.error("Error parsing user data from localStorage:", error)
+        setUsername("User") // Default to 'User' if parsing fails
       }
-    } catch (error) {
-      console.error("Error accessing localStorage:", error)
+    } else {
+      setUsername("User") // Default to 'User' if no user data is found
     }
   }, [])
 
-  // Don't render anything on the server to prevent hydration errors
-  if (!isMounted) {
-    return null
-  }
-
   return (
-    <div className="sticky top-0 z-50">
-      {/* Header */}
-      <header className="px-4 lg:px-6 h-16 flex items-center border-b border-blue-800/50 bg-blue-800/30 backdrop-blur-sm">
-        <Link href="/" className="flex items-center justify-center">
-          <Heart className="h-6 w-6 text-blue-500" />
-          <span className="ml-2 font-bold text-blue-100">The BlueHearts Network</span>
-        </Link>
-        <nav className="ml-auto flex gap-4 sm:gap-6">
-          <Link
-            href="/"
-            className={`text-sm font-medium transition-colors ${
-              pathname === "/"
-                ? "text-blue-100 bg-blue-700/50 px-3 py-1 rounded-full"
-                : "text-blue-200 hover:text-blue-100"
-            }`}
+    <header className="bg-gray-800 text-white p-4 flex items-center justify-between">
+      <div className="flex items-center">
+        <button onClick={onToggleSidebar} className="mr-4 focus:outline-none">
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            Home
-          </Link>
-          <Link
-            href="/about"
-            className={`text-sm font-medium transition-colors ${
-              pathname === "/about"
-                ? "text-blue-100 bg-blue-700/50 px-3 py-1 rounded-full"
-                : "text-blue-200 hover:text-blue-100"
-            }`}
-          >
-            About
-          </Link>
-          <Link
-            href="/projects"
-            className={`text-sm font-medium transition-colors ${
-              pathname === "/projects" || pathname.startsWith("/projects/")
-                ? "text-blue-100 bg-blue-700/50 px-3 py-1 rounded-full"
-                : "text-blue-200 hover:text-blue-100"
-            }`}
-          >
-            Projects
-          </Link>
-          <Link
-            href="/funding"
-            className={`text-sm font-medium transition-colors ${
-              pathname === "/funding"
-                ? "text-blue-100 bg-blue-700/50 px-3 py-1 rounded-full"
-                : "text-blue-200 hover:text-blue-100"
-            }`}
-          >
-            Funding
-          </Link>
-          {user ? (
-            <Link
-              href="/dashboard"
-              className={`text-sm font-medium transition-colors ${
-                pathname === "/dashboard"
-                  ? "text-blue-100 bg-blue-700/50 px-3 py-1 rounded-full"
-                  : "text-blue-200 hover:text-blue-100 bg-blue-700/50 px-3 py-1 rounded-full hover:bg-blue-600/50"
-              }`}
-            >
-              Dashboard
-            </Link>
-          ) : (
-            <Link
-              href="/join"
-              className="text-sm font-medium text-blue-100 bg-blue-600 px-3 py-1 rounded-full hover:bg-blue-500 transition-colors"
-            >
-              Join Now
-            </Link>
-          )}
-        </nav>
-      </header>
-
-      {/* Live Ocean Update Banner */}
-      <div className="bg-blue-800/30 border-b border-blue-800/50 py-2 px-4">
-        <div className="container mx-auto flex items-center justify-between text-sm">
-          <div className="flex items-center text-blue-200">
-            <Globe className="h-4 w-4 mr-2 text-blue-400 animate-pulse" />
-            <span>Connect to our NOSTR relay for real-time ocean updates: </span>
-            <code className="mx-2 px-2 py-0.5 bg-blue-900/50 rounded text-blue-300 font-mono">
-              wss://relaybluedata.space
-            </code>
-          </div>
-          <Button
-            size="sm"
-            variant="ghost"
-            className="text-blue-300 hover:text-blue-100 hover:bg-blue-700/50"
-            onClick={() => window.open("/nostr-guide", "_blank")}
-          >
-            <span>Learn More</span>
-            <ExternalLink className="ml-1 h-3 w-3" />
-          </Button>
-        </div>
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+        <span className="text-xl font-semibold">The Blue Pulse</span>
       </div>
-    </div>
+      <div>{username ? <span>Welcome, {username}!</span> : <span>Welcome!</span>}</div>
+    </header>
   )
 }
 
+export default HeaderFormat1

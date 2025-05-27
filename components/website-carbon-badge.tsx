@@ -71,4 +71,3 @@ export default function WebsiteCarbonBadge({ className = "" }: WebsiteCarbonBadg
     </div>
   )
 }
-

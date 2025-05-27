@@ -102,4 +102,3 @@ export default function CarbonFooter({ className = "", staticMode = true, static
     </div>
   )
 }
-

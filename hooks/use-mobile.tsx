@@ -1,33 +1,19 @@
-"use client"
+import * as React from "react"
 
-import { useState, useEffect } from "react"
+const MOBILE_BREAKPOINT = 768
 
-export default function useMobile() {
-  const [isMobile, setIsMobile] = useState(false)
-  const [isTablet, setIsTablet] = useState(false)
-  const [isDesktop, setIsDesktop] = useState(false)
-  const [windowWidth, setWindowWidth] = useState(0)
+export function useIsMobile() {
+  const [isMobile, setIsMobile] = React.useState<boolean | undefined>(undefined)
 
-  useEffect(() => {
-    // Function to update dimensions
-    const updateDimensions = () => {
-      const width = window.innerWidth
-      setWindowWidth(width)
-      setIsMobile(width < 640)
-      setIsTablet(width >= 640 && width < 1024)
-      setIsDesktop(width >= 1024)
+  React.useEffect(() => {
+    const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`)
+    const onChange = () => {
+      setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
     }
-
-    // Set initial dimensions
-    updateDimensions()
-
-    // Add event listener
-    window.addEventListener("resize", updateDimensions)
-
-    // Clean up
-    return () => window.removeEventListener("resize", updateDimensions)
+    mql.addEventListener("change", onChange)
+    setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
+    return () => mql.removeEventListener("change", onChange)
   }, [])
 
-  return { isMobile, isTablet, isDesktop, windowWidth }
+  return !!isMobile
 }
-

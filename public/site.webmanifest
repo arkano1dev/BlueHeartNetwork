@@ -1,6 +1,6 @@
 {
-  "name": "BlueHearts Network",
-  "short_name": "BlueHearts",
+  "name": "Blue Pulse",
+  "short_name": "BluePulse",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
@@ -13,9 +13,7 @@
       "type": "image/png"
     }
   ],
-  "theme_color": "#0077ff",
-  "background_color": "#0c4a6e",
-  "display": "standalone",
-  "start_url": "/"
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "display": "standalone"
 }
-
